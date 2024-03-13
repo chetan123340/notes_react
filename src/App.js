@@ -1,17 +1,16 @@
+import Detail from "./Detail";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App() {
-  
-
-  
+function App() {  
   return (
     <Router>
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route exact path="/" element={<Home/>} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>
     </Router>

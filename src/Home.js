@@ -7,8 +7,8 @@ const Home = () => {
     const { data: notes, isPending, error } = useFetch('http://localhost:8000/notes')
     return ( 
         <div className="home">
-            {isPending && <div>Loading ....</div>}
-            {error && <div>{error}</div>}
+            {isPending && <div className="container">Loading ....</div>}
+            {error && <div className="container">{error}</div>}
             <Form />
             {notes && <NoteList notes={notes} />}
         </div>

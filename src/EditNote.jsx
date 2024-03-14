@@ -1,30 +1,45 @@
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import useFetch from "./useFetch";
+import { useEffect, useState } from "react";
 
-const Form = () => {
+const EditNote = () => {
+    const {id} = useParams()
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
-    const [isPending, setIsPending] = useState(false)
+
+    const {data: note, isPending, error} = useFetch('http://localhost:8000/notes/'+id)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if (note) {
+            setTitle(note.title)
+            setContent(note.content)
+        }
+    },[note])
+    
+    
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        const data = {title, content}
-        fetch('http://localhost:8000/notes', {
-            method: "POST",
-            headers: {"Content-Type":"applicaton/json"},
-            body: JSON.stringify(data)
+        const newNote = {title, content}
+        fetch('http://localhost:8000/notes/'+id,{
+            method: "PUT",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(newNote)
         }).then(()=>{
-            console.log("Addition Success");
-            setIsPending(false)
-            window.location.reload();
+            navigate("/")
         })
     }
-    return (
-        <div className="container">
+
+    return ( 
+        <div>
+        {isPending && <div className="container">Loading...</div>}
+        {error && <div className="container">{error}</div>}
+        {note && <div className="container">
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <input type="text" className="form-control" 
                         required
-                        placeholder="Title"
                         value={title}
                         onChange={(e)=>{
                             setTitle(e.target.value)
@@ -34,7 +49,6 @@ const Form = () => {
                 <div className="mb-3">
                     <textarea type="text" className="form-control" 
                         required
-                        placeholder="Enter your note here"
                         value={content}
                         onChange={(e)=>{
                             setContent(e.target.value)
@@ -45,8 +59,9 @@ const Form = () => {
                 {isPending && <button type="submit" className="btn btn-primary" disabled="true">Submit</button>}
 
             </form>
+        </div>}
         </div>
-    );
+     );
 }
-
-export default Form;
+ 
+export default EditNote;

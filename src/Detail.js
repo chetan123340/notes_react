@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
 
 const Detail = () => {
@@ -6,10 +6,10 @@ const Detail = () => {
     const { data: note, isPending, error } = useFetch('http://localhost:8000/notes/' + id)
     const navigate = useNavigate();
 
-    const handleClick = ()=>{
-        fetch('http://localhost:8000/notes/'+note.id, {
+    const handleClick = () => {
+        fetch('http://localhost:8000/notes/' + note.id, {
             method: "DELETE"
-        }).then(()=>{
+        }).then(() => {
             navigate("/")
         })
     }
@@ -23,13 +23,22 @@ const Detail = () => {
                     <p className="lead">
                         {note.content}
                     </p>
-                    <button className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" onClick={handleClick}>
-                    <span className="material-symbols-outlined">
-                        delete
-                    </span>
-                </button>
+                    <div className="button-container">
+                        <button className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" onClick={handleClick}>
+                            <span className="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                        <Link to={`/edit/${note.id}`}>
+                        <button className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill">
+                            <span className="material-symbols-outlined">
+                                edit_note
+                            </span>
+                        </button>
+                        </Link>
+                    </div>
                 </div>
-                
+
             </div>}
         </div>
     );

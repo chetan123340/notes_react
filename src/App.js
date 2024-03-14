@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NotFound from "./NotFound";
 
 function App() {  
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" element={<Home/>} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/edit/:id" element={<EditNote />} />
+        <Route path="*" element={<NotFound />}
       </Routes>
       <Footer />
     </div>

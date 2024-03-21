@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/" element={<Home/>} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/edit/:id" element={<EditNote />} />
-        <Route path="*" element={<NotFound />}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

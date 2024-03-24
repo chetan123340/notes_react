@@ -1,17 +1,14 @@
 require('dotenv').config()
 
-
+const cors = require('cors')
 const express = require('express')
 const NoteRouter = require('./Router/NotesRoutes')
 const mongoose = require('mongoose');
 const app = express()
+ 
 
-
-app.get('/', (req, res)=>{
-    res.redirect('/notes')
-})
-
-app.use('/notes', NoteRouter)
+app.use(cors())
+app.use('/api/notes', NoteRouter)
 
 mongoose.connect(process.env.URI)
     .then(()=>{

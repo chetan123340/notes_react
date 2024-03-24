@@ -22,7 +22,7 @@ const EditNote = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         const newNote = {title, content}
-        fetch('http://localhost:8000/notes/'+id,{
+        fetch('http://localhost:8000/api/notes/'+id,{
             method: "PUT",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(newNote)

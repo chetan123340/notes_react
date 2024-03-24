@@ -3,11 +3,11 @@ import useFetch from "./useFetch";
 
 const Detail = () => {
     const { id } = useParams()
-    const { data: note, isPending, error } = useFetch('http://localhost:8000/notes/' + id)
+    const { data: note, isPending, error } = useFetch('http://localhost:8000/api/notes/' + id)
     const navigate = useNavigate();
 
     const handleClick = () => {
-        fetch('http://localhost:8000/notes/' + note.id, {
+        fetch('http://localhost:8000/api/notes/' + note.id, {
             method: "DELETE"
         }).then(() => {
             navigate("/")

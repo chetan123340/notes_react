@@ -8,7 +8,7 @@ const Form = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         const data = {title, content}
-        fetch('http://localhost:8000/notes', {
+        fetch('http://localhost:8000/api/notes', {
             method: "POST",
             headers: {"Content-Type":"applicaton/json"},
             body: JSON.stringify(data)

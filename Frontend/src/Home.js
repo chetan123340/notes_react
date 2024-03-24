@@ -4,7 +4,7 @@ import React from "react";
 import useFetch from "./useFetch";
 
 const Home = () => {
-    const { data: notes, isPending, error } = useFetch('http://localhost:8000/notes')
+    const { data: notes, isPending, error } = useFetch('http://localhost:8000/api/notes')
     return ( 
         <div className="home">
             {isPending && <div className="container">Loading ....</div>}

@@ -10,9 +10,9 @@ router.get('/', all_notes)
 
 router.post('/', add_note)
 
-router.put('/:id', update_note)
+router.put('/:_id', update_note)
 
-router.get('/:id', single_note)
+router.get('/:_id', single_note)
 
 router.delete('/:id', delete_note)
 

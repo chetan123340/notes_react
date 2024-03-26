@@ -10,19 +10,21 @@ const all_notes = async (req, res) => {
         })
 }
 
-const add_note = (req, res) => {
-    const { title, content } = req.body
-    noteModel.create({ title, content }).then(note => {
-        res.status(200).json(note)
-    }).catch(err => {
-        res.status(400).json(err)
-    })
-}
+const add_note = async (req, res) => {
+    const { title, content } = req.body;
+    try {
+        const note = await noteModel.create({ title, content });
+        res.status(200).json(note);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+};
+
 
 const update_note = (req, res) => {
-    const { id } = req.params
+    const { _id } = req.params
     const { title, content } = req.body
-    noteModel.findByIdAndUpdate(id, { title, content }).then(note => {
+    noteModel.findByIdAndUpdate(_id, { title, content }).then(note => {
         res.status(200).json(note)
     }).catch(err => {
         res.status(400).json(err)
@@ -30,8 +32,8 @@ const update_note = (req, res) => {
 }
 
 const single_note = (req, res) => {
-    const { id } = req.params
-    noteModel.findById(id).then((note) => {
+    const { _id } = req.params
+    noteModel.findById(_id).then((note) => {
         res.status(200).json(note)
     }).catch((err) => {
         res.status(400).json(err)

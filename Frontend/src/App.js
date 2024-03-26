@@ -13,8 +13,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/edit/:id" element={<EditNote />} />
+        <Route path="/detail/:_id" element={<Detail />} />
+        <Route path="/edit/:_id" element={<EditNote />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

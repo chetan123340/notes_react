@@ -11,7 +11,7 @@ const NoteList = ({notes}) => {
                             <div className="card-body">
                                 <h5 className="card-title">{note.title}</h5>
                                 <p className="card-text">{note.content.split(" ").slice(1,10).join(" ")}........</p>
-                                <Link to={`/detail/${note.id}`} className="btn btn-primary">Read more..</Link>
+                                <Link to={`/detail/${note._id}`} className="btn btn-primary">Read more..</Link>
                             </div>
                         </div>
                     </div>

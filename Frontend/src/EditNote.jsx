@@ -3,11 +3,11 @@ import useFetch from "./useFetch";
 import { useEffect, useState } from "react";
 
 const EditNote = () => {
-    const {id} = useParams()
+    const {_id} = useParams()
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
-    const {data: note, isPending, error} = useFetch('http://localhost:8000/notes/'+id)
+    const {data: note, isPending, error} = useFetch('http://localhost:8000/api/notes/'+_id)
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -22,7 +22,7 @@ const EditNote = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         const newNote = {title, content}
-        fetch('http://localhost:8000/api/notes/'+id,{
+        fetch('http://localhost:8000/api/notes/'+_id,{
             method: "PUT",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(newNote)

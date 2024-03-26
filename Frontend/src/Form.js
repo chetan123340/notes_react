@@ -7,15 +7,18 @@ const Form = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        const data = {title, content}
+        const note = {title, content}
+        
         fetch('http://localhost:8000/api/notes', {
             method: "POST",
             headers: {"Content-Type":"applicaton/json"},
-            body: JSON.stringify(data)
+            body: JSON.stringify(note)
         }).then(()=>{
             console.log("Addition Success");
+            console.log(JSON.stringify(note))
             setIsPending(false)
-            window.location.reload();
+        }).catch(err=>{
+            console.log(err);
         })
     }
     return (

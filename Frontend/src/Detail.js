@@ -2,12 +2,12 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
 
 const Detail = () => {
-    const { id } = useParams()
-    const { data: note, isPending, error } = useFetch('http://localhost:8000/api/notes/' + id)
+    const { _id } = useParams()
+    const { data: note, isPending, error } = useFetch('http://localhost:8000/api/notes/' + _id)
     const navigate = useNavigate();
 
     const handleClick = () => {
-        fetch('http://localhost:8000/api/notes/' + note.id, {
+        fetch('http://localhost:8000/api/notes/' + note._id, {
             method: "DELETE"
         }).then(() => {
             navigate("/")
@@ -29,7 +29,7 @@ const Detail = () => {
                                 delete
                             </span>
                         </button>
-                        <Link to={`/edit/${note.id}`}>
+                        <Link to={`/edit/${note._id}`}>
                         <button className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill">
                             <span className="material-symbols-outlined">
                                 edit_note

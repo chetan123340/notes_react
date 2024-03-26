@@ -11,12 +11,12 @@ const Form = () => {
         
         fetch('http://localhost:8000/api/notes', {
             method: "POST",
-            headers: {"Content-Type":"applicaton/json"},
+            headers: {"Content-Type":"application/json"},
             body: JSON.stringify(note)
         }).then(()=>{
             console.log("Addition Success");
-            console.log(JSON.stringify(note))
             setIsPending(false)
+            window.location.reload();
         }).catch(err=>{
             console.log(err);
         })
